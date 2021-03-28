@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Problem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProblemsController extends Controller
 {
@@ -25,7 +26,14 @@ class ProblemsController extends Controller
      */
     public function create()
     {
-        return view('problems.create');
+        $user = Auth::user();
+        if($user){
+            if($user->admin){
+                return view('problems.create');
+            }
+            return abort(503);
+        }
+        return abort(404);
     }
 
     /**
@@ -36,7 +44,7 @@ class ProblemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return dd($request);
     }
 
     /**
