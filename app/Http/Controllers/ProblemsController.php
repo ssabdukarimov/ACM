@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Problem;
+use DeepCopy\Matcher\PropertyNameMatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +34,7 @@ class ProblemsController extends Controller
             }
             return abort(503);
         }
-        return abort(404);
+        return redirect(route('login'));
     }
 
     /**
@@ -44,7 +45,7 @@ class ProblemsController extends Controller
      */
     public function store(Request $request)
     {
-        return dd($request);
+        return abort(404);
     }
 
     /**
@@ -55,7 +56,8 @@ class ProblemsController extends Controller
      */
     public function show($id)
     {
-        //
+        $problem = Problem::find($id);
+        return view('problems.detail', compact('problem'));
     }
 
     /**

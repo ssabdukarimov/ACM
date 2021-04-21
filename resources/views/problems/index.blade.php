@@ -8,15 +8,24 @@
     @include('layouts.menu')
 @endsection
 
+@section('page_css')
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/colors/palette-callout.min.css">
+@endsection
 
 @section('content')
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
             @if(\Illuminate\Support\Facades\Auth::check() and Auth::user()->admin == 1)
-                <div class="col-12 text-right">
-                    <a href="{{ route('problems.create') }} "class="btn btn-danger mb-2"><i class="feather icon-plus-circle"></i> Qo'shish</a>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="{{ route('problems.create') }}"  class="btn btn-primary mb-2" id="add-kanban">
+                            <i class='feather icon-plus-square mr-50'></i> Add New Board
+                        </a>
+                        <div id="kanban-app"></div>
+                    </div>
                 </div>
+
             @endif
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-1">

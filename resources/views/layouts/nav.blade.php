@@ -25,7 +25,7 @@
                     -->
                 </ul>
                 <ul class="nav navbar-nav float-right">
-                    <li class="dropdown notification-list topbar-dropdown d-none d-lg-block">
+                    <li class="dropdown dropdown-language nav-item">
                         @if(\Session::get('locale') == 'ru')
                             <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" id="topbar-languagedrop" href="/locale/ru" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="flag-icon flag-icon-ru"></i> <span class="align-middle">Русский</span> <i class="mdi mdi-chevron-down"></i>
@@ -76,12 +76,12 @@
                             </div>
                         </li>
                     @else
-                        <li class="dropdown notification-list topbar-dropdown d-none d-lg-block">
+                        <li class="dropdown nav-item">
                             <a class="nav-link arrow-none"  id="topbar-languagedrop" href="{{ route('login') }}"  aria-haspopup="true" aria-expanded="false">
                                 <strong><span class="align-middle">@lang('topbar.login')</span></strong>
                             </a>
                         </li>
-                        <li class="dropdown notification-list topbar-dropdown d-none d-lg-block">
+                        <li class="dropdown nav-item">
                             <a class="nav-link arrow-none"  id="topbar-languagedrop" href="{{ route('register') }}"  aria-haspopup="true" aria-expanded="false">
                                 <strong><span class="align-middle">@lang('topbar.register')</span></strong>
                             </a>
