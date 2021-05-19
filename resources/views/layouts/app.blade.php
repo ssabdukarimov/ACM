@@ -37,6 +37,8 @@
         <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/quill/quill.bubble.css">
         <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/ui/prism.min.css">
         <!-- END: Vendor CSS-->
+        <link href="/timer/TimeCircles.css" rel="stylesheet">
+        <script type="text/javascript" src="/timer/TimeCircles.js"></script>
 
         <!-- BEGIN: Theme CSS-->
         <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap.min.css">
@@ -53,6 +55,7 @@
 
         <!-- BEGIN: Custom CSS-->
         <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
         <!-- END: Custom CSS-->
 
     </head>
@@ -78,6 +81,7 @@
         <script src="/app-assets/js/core/app-menu.min.js"></script>
         <script src="/app-assets/js/core/app.min.js"></script>
         <script src="/app-assets/js/scripts/customizer.min.js"></script>
+
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->

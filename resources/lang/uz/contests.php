@@ -5,7 +5,7 @@ return [
     'name' => 'Nomi',
     'point' => 'Ball',
     'code' => 'Kod',
-    'new_problem' => 'Yangi masala qoʻshish',
+    'new_contest' => 'Qoʻshish',
     'time_limit' => 'Vaqt boʻyicha cheklov: ',
     'memory_limit' => 'Xotira boʻyicha cheklov: ',
     'ms' => 'ms',

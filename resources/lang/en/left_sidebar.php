@@ -6,4 +6,5 @@ return [
     'problems' => 'Problems',
     'attempts' => 'Attempts',
     'contests' => 'Contests',
+    'standing' => 'Rating',
 ];

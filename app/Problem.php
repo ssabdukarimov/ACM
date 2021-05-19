@@ -15,4 +15,13 @@ class Problem extends Model
         'time', 'memory', 'point', 'user_id',
         'input_example', 'output_example',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+    public function problems()
+    {
+        return $this->hasMany('App\Problem');
+    }
 }

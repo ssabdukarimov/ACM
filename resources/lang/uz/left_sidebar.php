@@ -6,4 +6,5 @@ return [
     'problems' => 'Masalalar',
     'attempts' => 'Urinishlar',
     'contests' => 'Musobaqalar',
+    'standing' => 'Reyting',
 ];

@@ -43,21 +43,21 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu" aria-labelledby="topbar-languagedrop">
                             <!-- item-->
                             @if(\Session::get('locale') != 'uz')
-                                <a href="locale/uz" class="dropdown-item notify-item">
+                                <a href="/locale/uz" class="dropdown-item notify-item">
                                     <i class="flag-icon flag-icon-uz"></i> <span class="align-middle">Oʻzbekcha</span>
                                 </a>
                             @endif
 
                         <!-- item-->
                             @if(\Session::get('locale') != 'ru')
-                                <a href="locale/ru" class="dropdown-item notify-item">
+                                <a href="/locale/ru" class="dropdown-item notify-item">
                                     <i class="flag-icon flag-icon-ru"></i> <span class="align-middle">Русский</span>
                                 </a>
                             @endif
 
                         <!-- item-->
                             @if(\Session::get('locale') != 'en')
-                                <a href="locale/en" class="dropdown-item notify-item">
+                                <a href="/locale/en" class="dropdown-item notify-item">
                                     <i class="flag-icon flag-icon-us"></i> <span class="align-middle">English</span>
                                 </a>
                             @endif

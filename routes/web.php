@@ -28,3 +28,5 @@ Route::get('/locale/{locale}', function ($locale){
 
 Route::resource('/users', 'UsersController');
 Route::resource('/problems', 'ProblemsController');
+Route::resource('/contests', 'ContestsController');
+Route::resource('/contestProblems', 'ContestProblemsController');

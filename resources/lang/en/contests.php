@@ -5,7 +5,7 @@ return [
     'name' => 'Name',
     'point' => 'Point',
     'code' => 'Code',
-    'new_problem' => 'Add a new problem',
+    'new_contest' => 'Add',
     'time_limit' => 'Time limit: ',
     'memory_limit' => 'Memory limit: ',
     'ms' => 'ms',

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Problem;
+use App\Contest;
+use App\ContestProblems;
 use DeepCopy\Matcher\PropertyNameMatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProblemsController extends Controller
+class ContestsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,9 @@ class ProblemsController extends Controller
      */
     public function index()
     {
-        $problems = Problem::latest()->paginate(20);
-        return view('problems.index', compact('problems'));
+        $contestProblems = ContestProblems::all();
+        $contests = Contest::latest()->paginate(20);
+        return view('contests.index', compact('contests', 'contestProblems'));
     }
 
     /**
@@ -30,7 +33,7 @@ class ProblemsController extends Controller
         $user = Auth::user();
         if($user){
             if($user->admin){
-                return view('problems.create');
+                return view('contests.create');
             }
             return abort(503);
         }
@@ -45,7 +48,12 @@ class ProblemsController extends Controller
      */
     public function store(Request $request)
     {
-
+        $user = Auth::user();
+        if($user and $user->admin) {
+            $request['user_id'] = $user->id;
+            Contest::create($request->all());
+            return $this->index();
+        }
         return abort(404);
     }
 
@@ -57,8 +65,13 @@ class ProblemsController extends Controller
      */
     public function show($id)
     {
-        $problem = Problem::find($id);
-        return view('problems.detail', compact('problem'));
+        $contest = Contest::find($id);
+        $contestProblems = ContestProblems::all()->where('contest_id', $id);
+        return view('contests.detail', compact('contest', 'contestProblems'));
+    }
+
+    public function task() {
+
     }
 
     /**

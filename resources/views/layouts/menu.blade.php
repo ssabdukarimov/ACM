@@ -9,9 +9,11 @@
             </li>
             <li class=" nav-item"><a href="{{ route('problems.index') }}"><i class="fa fa-tasks"></i> <span class="menu-title" data-i18n="Todo Application">@lang('left_sidebar.problems')</span></a>
             </li>
+            <!--
             <li class=" nav-item"><a href="app-kanban.html"><i class="feather icon-check"></i><span class="menu-title" data-i18n="Kanban Application">@lang('left_sidebar.attempts')</span></a>
             </li>
-            <li class=" nav-item"><a href="project-summary.html"><i class="fa fa-trophy"></i><span class="menu-title" data-i18n="Project Summary">@lang('left_sidebar.contests')</span></a>
+            -->
+            <li class=" nav-item"><a href="{{ route('contests.index') }}"><i class="fa fa-trophy"></i><span class="menu-title" data-i18n="Project Summary">@lang('left_sidebar.contests')</span></a>
             </li>
         </ul>
     </div>

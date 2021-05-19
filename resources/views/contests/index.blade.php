@@ -19,24 +19,23 @@
             @if(\Illuminate\Support\Facades\Auth::check() and Auth::user()->admin == 1)
                 <div class="row">
                     <div class="col-12">
-                        <a href="{{ route('problems.create') }}"  class="btn btn-primary mb-2" id="add-kanban">
-                            <i class='feather icon-plus-square mr-50'></i> Add New Board
+                        <a href="{{ route('contests.create') }}"  class="btn btn-primary mb-2" id="add-kanban">
+                            <i class='feather icon-plus-square mr-50'></i> Musobaqa yaratish
                         </a>
                         <div id="kanban-app"></div>
                     </div>
                 </div>
-
             @endif
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-1">
-                    <h3 class="content-header-title">@lang('left_sidebar.problems')</h3>
+                    <h3 class="content-header-title">@lang('left_sidebar.contests')</h3>
                 </div>
                 <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('left_sidebar.home')</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{ route('problems.index') }}">@lang('left_sidebar.problems')</a>
+                            <li class="breadcrumb-item"><a href="{{ route('contests.index') }}">@lang('left_sidebar.contests')</a>
                             </li>
                         </ol>
                     </div>
@@ -65,40 +64,26 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>@lang('problems.name')</th>
-                                        <th>@lang('problems.point')</th>
+                                        <th>@lang('contests.name')</th>
+                                        <th>@lang('contests.pcount')</th>
+                                        <th>@lang('contests.mball')</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @if(\Session::get('locale') == 'uz')
-                                        @foreach($problems as $key => $problem)
+                                        @foreach($contests as $key => $contest)
                                             <tr>
-                                                <th scope="row">{{ ($problems->currentpage()-1) * $problems->perpage() + $key + 1 }}</th>
-                                                <td><a href="{{ route('problems.show', $problem->id) }}">{{ $problem->code }}. {{ $problem->name_uz }}</a></td>
-                                                <td>{{ $problem->point }}</td>
-                                            </tr>
-                                        @endforeach
-                                    @elseif(\Session::get('locale') == 'ru')
-                                        @foreach($problems as $key => $problem)
-                                            <tr>
-                                                <th scope="row">{{ ($problems->currentpage()-1) * $problems->perpage() + $key + 1 }}</th>
-                                                <td><a href="{{ route('problems.show', $problem->id) }}">{{ $problem->code }}. {{ $problem->name_ru }}</a></td>
-                                                <td>{{ $problem->point }}</td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        @foreach($problems as $key => $problem)
-                                            <tr>
-                                                <th scope="row">{{ ($problems->currentpage()-1) * $problems->perpage() + $key + 1 }}</th>
-                                                <td><a href="{{ route('problems.show', $problem->id) }}">{{ $problem->code }}. {{ $problem->name_en }}</a></td>
-                                                <td>{{ $problem->point }}</td>
+                                                <th scope="row">{{ ($contests->currentpage()-1) * $contests->perpage() + $key + 1 }}</th>
+                                                <td><a href="{{ route('contests.show', $contest->id) }}">{{ $contest->name_uz }}</a></td>
+                                                <td>{{ $contest->link }}</td>
+                                                <td>{{ $contest->link }}</td>
                                             </tr>
                                         @endforeach
                                     @endif
 
                                     </tbody>
                                 </table>
-                                {{ $problems->links() }}
+                                {{ $contests->links() }}
                             </div>
                         </div>
                     </div>

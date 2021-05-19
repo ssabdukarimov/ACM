@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Problem;
+use App\Contest;
+use App\ContestProblems;
+use App\Language;
 use DeepCopy\Matcher\PropertyNameMatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProblemsController extends Controller
+class ContestProblemsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +19,7 @@ class ProblemsController extends Controller
      */
     public function index()
     {
-        $problems = Problem::latest()->paginate(20);
-        return view('problems.index', compact('problems'));
+        return abort(404);
     }
 
     /**
@@ -27,14 +29,7 @@ class ProblemsController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        if($user){
-            if($user->admin){
-                return view('problems.create');
-            }
-            return abort(503);
-        }
-        return redirect(route('login'));
+        return abort(404);
     }
 
     /**
@@ -45,7 +40,6 @@ class ProblemsController extends Controller
      */
     public function store(Request $request)
     {
-
         return abort(404);
     }
 
@@ -57,8 +51,9 @@ class ProblemsController extends Controller
      */
     public function show($id)
     {
-        $problem = Problem::find($id);
-        return view('problems.detail', compact('problem'));
+        $languages = Language::all();
+        $problem = ContestProblems::find($id);
+        return view('contestProblems.detail', compact('problem', 'languages'));
     }
 
     /**
