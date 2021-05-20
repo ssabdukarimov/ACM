@@ -14,4 +14,9 @@ class ContestProblems extends Model
     {
         return $this->belongsTo('App\Problem', 'problem_id');
     }
+
+    public function contest()
+    {
+        return $this->belongsTo('App\Contest', 'contest_id');
+    }
 }

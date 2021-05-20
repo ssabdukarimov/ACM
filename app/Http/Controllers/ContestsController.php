@@ -70,10 +70,6 @@ class ContestsController extends Controller
         return view('contests.detail', compact('contest', 'contestProblems'));
     }
 
-    public function task() {
-
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -82,7 +78,7 @@ class ContestsController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -94,7 +90,7 @@ class ContestsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -105,6 +101,6 @@ class ContestsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 }

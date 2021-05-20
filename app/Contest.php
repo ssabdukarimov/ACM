@@ -15,4 +15,9 @@ class Contest extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function contest()
+    {
+        return $this->hasMany('App\Contest');
+    }
 }

@@ -26,7 +26,18 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('left_sidebar.home')</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{ route('problems.index') }}">@lang('left_sidebar.problems')</a>
+                            <li class="breadcrumb-item"><a href="{{ route('contests.index') }}">@lang('left_sidebar.contests')</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('contests.show', $problem->contest_id) }}">
+                                    @if(\Session::get('locale') == 'uz')
+                                        {{ $problem->contest->name_uz }}
+                                    @elseif (\Session::get('locale') == 'ru')
+                                        {{ $problem->contest->name_ru }}
+                                    @else
+                                        {{ $problem->contest->name_en }}
+                                    @endif
+                                </a>
                             </li>
                             <li class="breadcrumb-item">{{ $problem->code }}
                             </li>
@@ -144,35 +155,36 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="invoice-total py-2">
-                                    <form class="form form-horizontal" method="post" action="{{ route('contestProblems.task') }}">
-                                        @csrf
-                                        <div class="form-body">
-                                            <h4 class="form-section"><i class="feather icon-check"></i> @lang('problems.submit')</h4>
-                                            <div class="form-group row">
-                                                <div class="col-md-8 offset-md-2">
-                                                    <select id="name_uz" class="form-control" required name="name_uz">
-                                                        @foreach($languages as $language)
-                                                            <option value="{{ $language->code }}">{{ $language->name }}  </option>
-                                                        @endforeach
-                                                    </select>
+                                @if(Carbon\Carbon::now() < Carbon\Carbon::parse($problem->contest->start)->addMinute($problem->contest->duration))
+                                    <hr>
+                                    <div class="invoice-total py-2">
+                                        <form class="form form-horizontal" method="post" action="{{ route('submit', $problem->id) }}">
+                                            @csrf
+                                            <div class="form-body">
+                                                <h4 class="form-section"><i class="feather icon-check"></i> @lang('problems.submit')</h4>
+                                                <div class="form-group row">
+                                                    <div class="col-md-8 offset-md-2">
+                                                        <select id="lang_code" class="form-control" required name="lang_code">
+                                                            @foreach($languages as $language)
+                                                                <option value="{{ $language->code }}">{{ $language->name }}  </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-8 offset-md-2">
+                                                        <textarea  id="source" class="form-control" required rows="15" name="source"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-8 offset-md-2">
-                                                    <textarea  id="name_ru" class="form-control" required rows="15" name="name_ru"></textarea>
-                                                </div>
+                                            <div class="form-actions">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-check-square-o"></i> Save
+                                                </button>
                                             </div>
-                                        </div>
-                                        <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fa fa-check-square-o"></i> Save
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

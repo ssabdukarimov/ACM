@@ -29,6 +29,9 @@
         <link rel="shortcut icon" type="image/x-icon" href="/img/logo.png">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
+        <link href="/timer/TimeCircles.css" rel="stylesheet">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+        <script type="text/javascript" src="/timer/TimeCircles.js"></script>
         <!-- BEGIN: Vendor CSS-->
         <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/vendors.min.css">
         <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/quill/katex.min.css">
@@ -37,8 +40,6 @@
         <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/quill/quill.bubble.css">
         <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/ui/prism.min.css">
         <!-- END: Vendor CSS-->
-        <link href="/timer/TimeCircles.css" rel="stylesheet">
-        <script type="text/javascript" src="/timer/TimeCircles.js"></script>
 
         <!-- BEGIN: Theme CSS-->
         <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap.min.css">

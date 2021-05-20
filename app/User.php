@@ -42,8 +42,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Region', 'region_id');
     }
 
-    public function problems()
+    public function user()
     {
-        return $this->hasMany('App\Problem');
+        return $this->hasMany('App\User');
     }
 }

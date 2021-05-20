@@ -46,14 +46,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse"><i class="feather icon-minus"></i></a></li>
-                                    <li><a data-action="reload"><i class="feather icon-rotate-cw"></i></a></li>
-                                    <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
-                                    <li><a data-action="close"><i class="feather icon-x"></i></a></li>
-                                </ul>
-                            </div>
+
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
@@ -75,8 +68,26 @@
                                             <tr>
                                                 <th scope="row">{{ ($contests->currentpage()-1) * $contests->perpage() + $key + 1 }}</th>
                                                 <td><a href="{{ route('contests.show', $contest->id) }}">{{ $contest->name_uz }}</a></td>
-                                                <td>{{ $contest->link }}</td>
-                                                <td>{{ $contest->link }}</td>
+                                                <td>{{ $contestProblems->where('contest_id', $contest->id)->count() }}</td>
+                                                <td>{{ $contestProblems->where('contest_id', $contest->id)->sum('point') }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @elseif(\Session::get('locale') == 'ru')
+                                        @foreach($contests as $key => $contest)
+                                            <tr>
+                                                <th scope="row">{{ ($contests->currentpage()-1) * $contests->perpage() + $key + 1 }}</th>
+                                                <td><a href="{{ route('contests.show', $contest->id) }}">{{ $contest->name_ru }}</a></td>
+                                                <td>{{ $contestProblems->where('contest_id', $contest->id)->count() }}</td>
+                                                <td>{{ $contestProblems->where('contest_id', $contest->id)->sum('point') }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        @foreach($contests as $key => $contest)
+                                            <tr>
+                                                <th scope="row">{{ ($contests->currentpage()-1) * $contests->perpage() + $key + 1 }}</th>
+                                                <td><a href="{{ route('contests.show', $contest->id) }}">{{ $contest->name_en }}</a></td>
+                                                <td>{{ $contestProblems->where('contest_id', $contest->id)->count() }}</td>
+                                                <td>{{ $contestProblems->where('contest_id', $contest->id)->sum('point') }}</td>
                                             </tr>
                                         @endforeach
                                     @endif

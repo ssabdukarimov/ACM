@@ -27,6 +27,7 @@ Route::get('/locale/{locale}', function ($locale){
 });
 
 Route::resource('/users', 'UsersController');
-Route::resource('/problems', 'ProblemsController');
 Route::resource('/contests', 'ContestsController');
 Route::resource('/contestProblems', 'ContestProblemsController');
+Route::resource('/tasks', 'TasksController');
+Route::post('/submit/{id}/', 'ContestProblemsController@submit')->name('submit');

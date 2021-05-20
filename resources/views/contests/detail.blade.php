@@ -69,24 +69,24 @@
                                     <div class="row">
                                         <div class="col-md-12 col-lg-7 col-xl-4 mb-50">
                                             <span class="invoice-id font-weight-bold">@lang('contests.start')</span>
-                                            <span>{{ Carbon\Carbon::parse($contest->start)->format('H:i:s d-m-Y') }} </span>
+                                            <span>&nbsp;&nbsp;{{ Carbon\Carbon::parse($contest->start)->format('H:i:s d-m-Y') }} </span>
                                         </div>
                                         <div class="col-md-12 col-lg-5 col-xl-8">
                                             <div class="d-flex align-items-center justify-content-end justify-content-xs-start">
-                                                <span class="font-weight-bold no-wrap">@lang('contests.countproblems') </span>
-                                                <span></span>
+                                                <span class="font-weight-bold no-wrap">@lang('contests.countproblems')  </span>
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contestProblems->count() }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 col-lg-7 col-xl-4 mb-50">
                                             <span class="font-weight-bold no-wrap">@lang('contests.end') </span>
-                                            <span>{{ Carbon\Carbon::parse($contest->start)->addMinute($contest->duration)->format('H:i:s d-m-Y') }}</span>
+                                            <span>&nbsp;&nbsp;{{ Carbon\Carbon::parse($contest->start)->addMinute($contest->duration)->format('H:i:s d-m-Y') }}</span>
                                         </div>
                                         <div class="col-md-12 col-lg-5 col-xl-8">
                                             <div class="d-flex align-items-center justify-content-end justify-content-xs-start">
                                                 <span class="font-weight-bold no-wrap">@lang('contests.pointsum') </span>
-                                                <span></span>
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contestProblems->sum('point') }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +100,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h1 class="text-center">Nazorat ishi boshlanishiga</h1>
-                                                    <div id="CountDown"  class="col-12  col-lg-6 offset-lg-3"  data-date="<?php echo $contest->start; ?>"></div>
+                                                    <div id="CountDown"  class="col-12  col-lg-12"  data-date="{{ $contest->start }}"></div>
                                                     <script>
                                                         function countdownComplete(unit, value, total){
                                                             if(total <= 0){
@@ -137,6 +137,22 @@
                                                     <td>{{ $problem->point }}</td>
                                                 </tr>
                                             @endforeach
+                                        @elseif(\Session::get('locale') == 'ru')
+                                            @foreach($contestProblems as $key => $problem)
+                                                <tr>
+                                                    <th scope="row">{{ $problem->code }}</th>
+                                                    <td><a href="{{ route('contestProblems.show', $problem->id) }}">{{ $problem->problem->name_ru }}</a></td>
+                                                    <td>{{ $problem->point }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            @foreach($contestProblems as $key => $problem)
+                                                <tr>
+                                                    <th scope="row">{{ $problem->code }}</th>
+                                                    <td><a href="{{ route('contestProblems.show', $problem->id) }}">{{ $problem->problem->name_en }}</a></td>
+                                                    <td>{{ $problem->point }}</td>
+                                                </tr>
+                                            @endforeach
                                         @endif
 
                                         </tbody>
@@ -153,7 +169,7 @@
                         <div class="card">
                             <div class="card-body p-2">
                                 <a href="{{ route('contests.show', $contest->id) }}" class="btn btn-primary btn-block mb-1"> <i class="fa fa-tasks"></i> <span class="menu-title" data-i18n="Todo Application">@lang('left_sidebar.problems') </a>
-                                <a href="#" class="btn btn-info btn-block mb-1 print-invoice"> <i class="feather icon-check mr-25 common-size"></i> @lang('left_sidebar.attempts')</a>
+                                <a href="{{ route('tasks.index') }}" class="btn btn-info btn-block mb-1 print-invoice"> <i class="feather icon-check mr-25 common-size"></i> @lang('left_sidebar.attempts')</a>
                                 <a href="#" class="btn btn-success btn-block mb-1"><i class="feather icon-credit-card mr-25 common-size"></i> @lang('left_sidebar.standing')</a>
                             </div>
                         </div>

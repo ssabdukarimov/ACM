@@ -9,4 +9,9 @@ class Language extends Model
     protected $fillable = [
         'code','name',
     ];
+
+    public function language()
+    {
+        return $this->hasMany('App\Language');
+    }
 }

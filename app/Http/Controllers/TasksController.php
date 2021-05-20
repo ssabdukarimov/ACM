@@ -4,23 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Problem;
 use App\Contest;
-use App\Task;
 use App\ContestProblems;
-use App\Language;
+use App\Task;
 use DeepCopy\Matcher\PropertyNameMatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ContestProblemsController extends Controller
+class TasksController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        abort(404);
+        $user = Auth::user();
+        $tasks = Task::latest()->where('user_id', $user->id)->paginate(20);
+        return view('tasks.index', compact('tasks'));
     }
 
     /**
@@ -52,9 +59,7 @@ class ContestProblemsController extends Controller
      */
     public function show($id)
     {
-        $languages = Language::all();
-        $problem = ContestProblems::find($id);
-        return view('contestProblems.detail', compact('problem', 'languages'));
+        abort(404);
     }
 
     /**
@@ -89,24 +94,5 @@ class ContestProblemsController extends Controller
     public function destroy($id)
     {
         abort(404);
-    }
-
-
-    public function submit(Request $request, $id)
-    {
-        $user = Auth::user();
-        $problem = ContestProblems::find($id);
-        if($user) {
-            if($problem){
-                $request['user_id'] = $user->id;
-                $request['problem_id'] = $problem->problem_id;
-                $request['contest_id'] = $problem->contest_id;
-                $request['status_id'] = 1;
-                Task::create($request->all());
-                return redirect(route('tasks.index'));
-            }
-            abort(404);
-        }
-        return redirect(route('login'));
     }
 }

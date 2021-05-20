@@ -7,8 +7,7 @@
             </li>
             <li class=" nav-item"><a href="{{ route('users.index') }}"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Chat Application">@lang('left_sidebar.users')</span></a>
             </li>
-            <li class=" nav-item"><a href="{{ route('problems.index') }}"><i class="fa fa-tasks"></i> <span class="menu-title" data-i18n="Todo Application">@lang('left_sidebar.problems')</span></a>
-            </li>
+
             <!--
             <li class=" nav-item"><a href="app-kanban.html"><i class="feather icon-check"></i><span class="menu-title" data-i18n="Kanban Application">@lang('left_sidebar.attempts')</span></a>
             </li>
